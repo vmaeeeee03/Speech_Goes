@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>site1</title>
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bellota+Text&amp;display=swap">
+    <link rel="stylesheet" href="static/css/ST-Brigantina-free.css">
+    <link rel="stylesheet" href="static/css/Banner-Heading-Image-images.css">
+    <link rel="stylesheet" href="static/css/Filter.css">
+    <link rel="stylesheet" href="static/css/Navbar-Centered-Brand-icons.css">
+    <link rel="stylesheet" href="static/css/NZSearchFilterClear.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-md fixed-top text-center border-2 shadow-sm d-xxl-flex justify-content-xxl-end align-items-xxl-center py-3"
+        style="/*margin-bottom: -3px;*/padding-bottom: 0px;background: #ffffff;color: #ffffff;padding-top: 0px;/*margin-top: 28px;*/position: relative;height: px;">
+        <div class="container-fluid"><span
+                class="text-center d-sm-flex align-items-center align-content-center m-auto align-items-sm-center"
+                style="font-family: ST-Brigantina-free;/*display: inline-flex;*//*overflow: visible;*/transform: perspective(0px) translate(0px) rotate(0deg) rotateY(0deg) scale(2.47) skew(0deg);/*filter: hue-rotate(0deg) invert(0%) sepia(0%);*/transform-origin: center;/*text-shadow: 0px 0px;*/color: #303f9f;font-size: 24px;position: relative;text-align: center;margin-right: -17px;padding-right: 0px;margin-left: -20px;padding-left: 0px;">Речь&nbsp;<img
+                    src="static/img/Логотип%201.svg" style="height: 30px;">&nbsp;идёт<a class="stretched-link"
+                    href="/"></a></span><button data-bs-toggle="collapse" class="navbar-toggler"
+                data-bs-target="#navcol-4" style="margin-left: 0px;"><span class="visually-hidden">Toggle
+                    navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse flex-grow-0 order-md-first" id="navcol-4">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link active" href="/for_tutors"
+                            style="font-family: ST-Brigantina-free;font-size: 35px;color: #303f9f;">Преподавателям</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="/contacts"
+                            style="font-size: 35px;font-family: ST-Brigantina-free;color: #303f9f;">о проекте</a></li>
+                </ul>
+                <div class="d-md-none my-2"><a class="btn btn-light me-2" role="button"
+                        style="font-family: ST-Brigantina-free;font-size: 37px;color: #303f9f;border-color: #ffffff;background: rgba(197,202,233,0.5);"
+                        href="/instruction">Инструкция</a>
+                    <a class="btn btn-primary" role="button"
+                        style="font-size: 37px;font-family: ST-Brigantina-free;background: #303f9f;color: #ffffff;border-style: double;border-color: #303f9f;"
+                        href="/find">Искать</a>
+                </div><span class="navbar-text"></span>
+            </div>
+            <div class="d-none d-md-block"><a class="btn btn-light border rounded me-2" role="button"
+                    style="font-family: ST-Brigantina-free;font-size: 37px;color: #303f9f;border-color: #ffffff;background: rgba(197,202,233,0.5);"
+                    href="/instruction">Инструкция</a><a class="btn btn-primary border rounded" role="button"
+                    href="/find"
+                    style="font-size: 37px;font-family: ST-Brigantina-free;background: #303f9f;color: #ffffff;border-style: double;border-color: #303f9f;">Искать</a>
+            </div><a href="#"></a>
+        </div>
+    </nav>
+    <div class="filter">
+        <form method="post" action="/search_result">
+            <select name="mwu"
+                style="color: #09093e;font-size:20px; font-family:'Bellota Text', serif; text-align: center; width: auto; padding: 5px;">
+                <option value="" {% if not request.form.get('mwu') %}selected{% endif %}>-</option>
+                <option value="" disabled {% if not request.form.get('mwu') %}selected{% endif %}>Выбрать</option>
+                {% for value in filter_options['mwu'] %}
+                <option value="{{ value }}" {% if request.form.get('mwu')==value %}selected{% endif %}>{{ value }}
+                </option>
+                {% endfor %}
+            </select>
+
+            <select name="context"
+                style="color: #212121;font-size:20px; font-family:'Bellota Text', serif; text-align: center; width: auto; padding: 5px;">
+                <option value="" {% if not request.form.get('context') %}selected{% endif %}>-</option>
+                <option value="" disabled {% if not request.form.get('context') %}selected{% endif %}>Контекст</option>
+                {% for value in filter_options['context'] %}
+                <option value="{{ value }}" {% if request.form.get('context')==value %}selected{% endif %}>{{ value }}
+                </option>
+                {% endfor %}
+            </select>
+
+            <select name="roles"
+                style="color: #212121;font-size:20px; font-family:'Bellota Text', serif; text-align: center; width: auto; padding: 5px;">
+                <option value="" {% if not request.form.get('roles') %}selected{% endif %}>-</option>
+                <option value="" disabled {% if not request.form.get('roles') %}selected{% endif %}>Собеседники</option>
+                {% for value in filter_options['roles'] %}
+                <option value="{{ value }}" {% if request.form.get('roles')==value %}selected{% endif %}>{{ value }}
+                </option>
+                {% endfor %}
+            </select>
+
+            <select name="expression"
+                style="color: #212121;font-size:20px; font-family:'Bellota Text', serif; text-align: center; width: auto; padding: 5px;">
+                <option value="" {% if not request.form.get('expression') %}selected{% endif %}>-</option>
+                <option value="" disabled {% if not request.form.get('expression') %}selected{% endif %}>Как выразить
+                </option>
+                {% for value in filter_options['expression'] %}
+                <option value="{{ value }}" {% if request.form.get('expression')==value %}selected{% endif %}>{{ value
+                    }}</option>
+                {% endfor %}
+            </select>
+
+            <select name="sound"
+                style="color: #212121;font-size:20px; font-family:'Bellota Text', serif; text-align: center; width: auto; padding: 5px;">
+                <option value="" {% if not request.form.get('sound') %}selected{% endif %}>-</option>
+                <option value="" disabled {% if not request.form.get('sound') %}selected{% endif %}>Звук</option>
+                {% for value in filter_options['sound'] %}
+                <option value="{{ value }}" {% if request.form.get('sound')==value %}selected{% endif %}>{{ value }}
+                </option>
+                {% endfor %}
+            </select>
+
+            <div class="container-fluid py-4 py-xl-5" style="height: 30px;padding-top: 0px;">
+                <div class="row mb-5" style="padding-top: 0px;margin-top: -28px;">
+                    <div class="col-md-8 col-xl-1 col-xxl-1 text-center mx-auto">
+                        <div class="btn-group-vertical border rounded-pill float-none d-xl-flex justify-content-center align-items-center align-content-center align-self-center flex-wrap justify-content-xl-center"
+                            role="group"></div>
+                        <button type="submit"
+                            class="btn btn-primary text-nowrap justify-content-center align-items-center m-auto"
+                            style="color: #ffffff;background: #3f51b5;font-family: 'Bellota Text', serif;font-size: 25px;">Найти</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <section class="mt-4">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <div class="card shadow">
+                        <div class="card-header py-2" style="background: rgb(255,255,255);">
+                            <p class="lead text-info m-0"
+                                style="color: var(--bs-black);font-family: 'Bellota Text', serif;text-align: left;">
+                                <span style="color: rgb(33, 33, 33);">
+                                    Результаты поиска по запросу:
+                                    {% if request.form.get('mwu') %} устойчивое сочетание: {{
+                                    request.form.get('mwu') + ';'}}{% endif %}
+                                    {% if request.form.get('context')%} контекст: {{ request.form.get('context') +
+                                    ';'}}{%
+                                    endif
+                                    %}
+                                    {% if request.form.get('roles') %} собеседник: {{ request.form.get('roles') + ';'
+                                    }}{% endif %}
+                                    {% if request.form.get('expression') %} что выражает: {{
+                                    request.form.get('expression') +
+                                    ';'
+                                    }}{%
+                                    endif %}
+                                    {% if request.form.get('sound') %} звук: {{ request.form.get('sound') + ';'}}{%
+                                    endif %}
+                                </span>
+                            </p>
+                        </div>
+                        <div class="card-body" style="background: rgb(255,255,255);">
+                            <div class="table-responsive table mb-0 pt-3 pe-2">
+                                <table class="table table-striped table-sm my-0 mydatatable">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center"
+                                                style="font-family: 'Bellota Text', serif;color: var(--bs-black);width: 125px;">
+                                            </th>
+                                            <th class="text-center"
+                                                style="font-family: 'Bellota Text', serif;width: 125px;">Значение</th>
+                                            <th class="text-center"
+                                                style="font-family: 'Bellota Text', serif;width: 300px;">Текст</th>
+                                            <th class="text-center"
+                                                style="font-family: 'Bellota Text', serif;width: 300px;">Перевод</th>
+                                            <th class="text-center"
+                                                style="font-family: 'Bellota Text', serif;width: 150px;min-width: 120px;">
+                                                Слушать</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% if results %}
+                                        {% for result in results %}
+                                        <tr class="table-light">
+                                            <td>{{ result['mwu'] }}</td>
+                                            <td>{{ result['meaning'] | safe }}</td>
+                                            <td>
+                                                <span href="#" style="cursor:pointer; display:block; text-align:left;"
+                                                    data-bs-toggle="modal" data-bs-target="#infoModal"
+                                                    data-context="{{ result['context'] }}"
+                                                    data-roles="{{ result['roles'] }}"
+                                                    data-comment="{{ result['comment'] }}" ">
+                                                    {{ result['text'] | safe }}
+                                                </span>
+                                            </td>
+                                            <td>{{ result['translation'] | safe }}</td>
+                                            <td>
+                                                <div class=" row">
+                                                    <audio controls style="width: 100%;max-width: 500px;">
+                                                        <source
+                                                            src="{{ url_for('static', filename=result['sound_path']) }}"
+                                                            type="audio/mpeg">
+                                                    </audio>
+                            </div>
+                            </td>
+                            </tr>
+                            {% endfor %}
+                            {% else %}
+                            <tr>
+                                <td colspan="7" class="text-center">Результатов не найдено</td>
+                            </tr>
+                            {% endif %}
+                            </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="infoModalLabel">Дополнительная информация</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Контекст:</strong> <span id="modal-context"></span></p>
+                    <p><strong>Собеседники:</strong> <span id="modal-roles"></span></p>
+                    <p id="modal-comment-block" style="display:none;"><strong>Комментарий:</strong> <span
+                            id="modal-comment"></span></p>
+                    <hr>
+                    <div id="modal-text"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="static/js/DataTable---Fully-BSS-Editable-style.js"></script>
+    <script src="static/bootstrap/js/bootstrap.modal.js"></script>
+</body>
+
+</html>
