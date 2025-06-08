@@ -12,9 +12,9 @@ def get_filter_options():
     conn = get_db_connection()
     filters = {}
     for field in ['mwu', 'context', 'roles', 'sound']:
-        rows = conn.execute(f"SELECT DISTINCT {field} FROM search_results WHERE {field} IS NOT NULL AND {field} != ''").fetchall()
+        rows = conn.execute(f"SELECT DISTINCT {field} FROM search_results WHERE {field} IS NOT NULL AND {field} != '' ORDER BY {field} ASC").fetchall()
         filters[field] = [row[field] for row in rows]
-    rows = conn.execute("SELECT DISTINCT expression FROM expressions WHERE expression IS NOT NULL AND expression != ''").fetchall()
+    rows = conn.execute("SELECT DISTINCT expression FROM expressions WHERE expression IS NOT NULL AND expression != '' ORDER BY expression ASC").fetchall()
     filters['expression'] = [row['expression'] for row in rows]
     filters['sound'] = ["Есть звук", "Нет звука"]
     conn.close()
@@ -91,13 +91,17 @@ def search_result():
         print(f"Params: {params}")  # Debug print
         print(f"Results: {results}")  # Debug print
         
-        return render_template("search_result.html", results=results, request=request, filter_options=filter_options)
+        return render_template("search_result.html", results=results, request=request, filter_options=filter_options, results_count = len(results))
     
-    return render_template("search_result.html", results=[], request=request, filter_options=filter_options)
+    return render_template("search_result.html", results=[], request=request, filter_options=filter_options, results_count = 0)
 
 @app.route("/contacts")
 def contacts():
     return render_template("contacts.html")
+
+@app.route("/dictionary")
+def dictionary():
+    return render_template("dictionary.html")
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=10000)

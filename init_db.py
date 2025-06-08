@@ -2,7 +2,7 @@ import sqlite3
 
 def init_db():
     # Read SQL commands from db.sql
-    with open('db.sql', 'r', encoding='utf-8') as f:
+    with open('db_new.sql', 'r', encoding='utf-8') as f:
         sql_commands = f.read()
     
     # Connect to SQLite database (creates it if it doesn't exist)
